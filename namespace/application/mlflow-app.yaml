@@ -9,9 +9,32 @@ spec:
     namespace: application
     server: https://kubernetes.default.svc
   source:
-    repoURL: "https://github.com/DianaKobiakova/goit_argo.git"
-    targetRevision: main
-    path: path/to/mlflow/manifests # ЗАМЕНИТЕ НА ПУТЬ К МАНИФЕСТАМ MLFLOW В ВАШЕМ РЕПОЗИТОРИИ
+    repoURL: "https://community-charts.github.io/helm-charts"
+    targetRevision: 1.8.1
+    chart: mlflow
+    helm:
+      valuesObject:
+        postgresql:
+          enabled: true
+          primary:
+            persistence:
+              enabled: false
+          auth:
+            username: mlflow
+            password: mlflowpass
+            database: mlflowdb
+        backendStore:
+          databaseMigration: true
+          databaseConnectionCheck: true
+        artifactRoot:
+          defaultArtifactRoot: "./mlruns"
+          defaultArtifactsDestination: "./mlartifacts"
+        auth:
+          enabled: false
+        service:
+          type: ClusterIP
+          port: 80
+          containerPort: 5000
   syncPolicy:
     automated:
       prune: true
