@@ -8,7 +8,7 @@ spec:
     namespace: application
     server: https://kubernetes.default.svc
   source:
-    repoURL: "https://github.com/<ВАШ_ДЕСКТОП_ИЛИ_ОРГАНИЗАЦИЯ>/<ИМЯ_РЕПОЗИТОРИЯ>.git" # ЗАМЕНИТЕ НА ВАШ РЕПОЗИТОРИЙ
+    repoURL: "https://github.com/DianaKobiakova/goit_argo.git"
     targetRevision: main
     path: path/to/mlflow/manifests # ЗАМЕНИТЕ НА ПУТЬ К МАНИФЕСТАМ MLFLOW В ВАШЕМ РЕПОЗИТОРИИ
   syncPolicy:
