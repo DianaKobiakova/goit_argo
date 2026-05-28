@@ -17,6 +17,8 @@ spec:
     helm:
       valuesObject:
         nameOverride: "prometheus-operator"
+        admissionWebhooks:
+          enabled: false
         defaultRules:
           create: true
         rules:
