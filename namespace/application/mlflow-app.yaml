@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlflow
+  namespace: argocd
+spec:
+  destination:
+    namespace: application
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: "https://github.com/<ВАШ_ДЕСКТОП_ИЛИ_ОРГАНИЗАЦИЯ>/<ИМЯ_РЕПОЗИТОРИЯ>.git" # ЗАМЕНИТЕ НА ВАШ РЕПОЗИТОРИЙ
+    targetRevision: main
+    path: path/to/mlflow/manifests # ЗАМЕНИТЕ НА ПУТЬ К МАНИФЕСТАМ MLFLOW В ВАШЕМ РЕПОЗИТОРИИ
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - SkipDryRunOnMissingResource=true
